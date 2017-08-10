@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChocoReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ce51a9f6-9c8e-4fdf-9ebb-715951b4b3d6">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <style name="Crosstab Data Text" hAlign="Center"/>
+    <style name="table">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <subDataset name="Chocoholicos" uuid="1a3e8344-72f5-4758-9a98-4d326fc54b37">
+        <queryString language="SQL">
+			<![CDATA[
+select 	
+
+		P.name AS 'Provider', 
+		M.name AS 'Member', 
+        S.name AS 'Service', 
+
+		R.currentDate, 
+		R.date, 
+		R.description, 
+		R.comment
+
+from 
+
+	provider P join record R on P.id = R.provider_id 
+
+			   join member M on M.id = R.member_id 
+               
+               join service S on S.id = R.service_id
+
+WHERE 
+
+	R.provider_id = 2]]>
+        </queryString>
+        <field name="Provider" class="java.lang.String"/>
+        <field name="Member" class="java.lang.String"/>
+        <field name="Service" class="java.lang.String"/>
+        <field name="currentDate" class="java.sql.Timestamp">
+            <fieldDescription><![CDATA[]]></fieldDescription>
+        </field>
+        <field name="date" class="java.sql.Timestamp">
+            <fieldDescription><![CDATA[]]></fieldDescription>
+        </field>
+        <field name="description" class="java.lang.String">
+            <fieldDescription><![CDATA[]]></fieldDescription>
+        </field>
+        <field name="comment" class="java.lang.String">
+            <fieldDescription><![CDATA[]]></fieldDescription>
+        </field>
+        <group name="Provider">
+            <groupExpression><![CDATA[$F{Provider}]]></groupExpression>
+        </group>
+        <group name="Member">
+            <groupExpression><![CDATA[$F{Member}]]></groupExpression>
+        </group>
+        <group name="Service">
+            <groupExpression><![CDATA[$F{Service}]]></groupExpression>
+        </group>
+        <group name="description">
+            <groupExpression><![CDATA[$F{description}]]></groupExpression>
+        </group>
+    </subDataset>
+    <parameter name="providerId" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[select 	
+
+	P.name AS 'Provider', 
+	M.name AS 'Member', 
+        	S.name AS 'Service', 
+	
+	R.currentDate AS 'Fecha de creacion', 
+	R.date AS 'Fecha de consulta', 
+	R.description AS 'Descripcion', 
+	R.comment AS 'Comentarios'
+	
+from 
+
+	provider P join record R on P.id = R.provider_id 
+	join member M on M.id = R.member_id 
+	join service S on S.id = R.service_id
+
+WHERE 
+
+	R.provider_id = $P{providerId}]]>
+    </queryString>
+    <field name="Provider" class="java.lang.String"/>
+    <field name="Member" class="java.lang.String"/>
+    <field name="Service" class="java.lang.String"/>
+    <field name="Fecha de creacion" class="java.sql.Timestamp"/>
+    <field name="Fecha de consulta" class="java.sql.Timestamp"/>
+    <field name="Descripcion" class="java.lang.String"/>
+    <field name="Comentarios" class="java.lang.String"/>
+    <group name="Group1">
+        <groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+        <groupHeader>
+            <band height="40">
+                <textField>
+                    <reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#006600" uuid="6fe4807a-39f3-47de-a234-da4605a31245"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["GroupField"]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="2b2bd5e2-299a-4363-9cc1-263d115c8dc6"/>
+                </rectangle>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band height="95">
+                <componentElement>
+                    <reportElement key="table" style="table" x="39" y="0" width="360" height="140" uuid="909e94ac-1d76-4e3e-8003-a6f4cae1d7bc"/>
+                    <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                        <datasetRun subDataset="Chocoholicos" uuid="8710ac54-4a89-4634-9693-3b10bafc9b42">
+                            <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+                        </datasetRun>
+                        <jr:column width="220" uuid="58fc588e-3b00-40ec-9dd2-5f21113c06dc">
+                            <jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+                            <jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+                            <jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+                            <jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+                            <jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+                        </jr:column>
+                        <jr:column width="90" uuid="d69e265e-9193-4051-b1b6-517356af2d82">
+                            <jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+                            <jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+                            <jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+                            <jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+                            <jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+                        </jr:column>
+                        <jr:column width="90" uuid="2c281cb8-d91e-4efb-8ae3-42fde3ecaea3">
+                            <jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+                            <jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+                            <jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+                            <jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+                            <jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+                        </jr:column>
+                        <jr:column width="90" uuid="d727a28e-2efe-4bfb-8dcd-9e8eedd74a6b">
+                            <jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+                            <jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+                            <jr:columnHeader style="table_CH" height="30" rowSpan="1"/>
+                            <jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+                            <jr:detailCell style="table_TD" height="20" rowSpan="1"/>
+                        </jr:column>
+                    </jr:table>
+                </componentElement>
+            </band>
+        </groupFooter>
+    </group>
+    <group name="Group2">
+        <groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+        <groupHeader>
+            <band height="30">
+                <textField>
+                    <reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="c18b246e-372b-41d0-a602-ccceb9472195"/>
+                    <textElement>
+                        <font size="16" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["GroupField"]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupHeader>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="70" splitType="Stretch">
+            <image>
+                <reportElement x="275" y="0" width="300" height="64" uuid="387f3689-3e88-4c6c-be33-4905a2b0e365"/>
+                <imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement style="Title" x="0" y="13" width="263" height="33" uuid="7b4a2538-76af-48f5-b159-0000f7178f8b"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Chocoholicos Report]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SubTitle" x="100" y="46" width="174" height="22" uuid="efa688f3-a931-43d2-9efa-4e24866283c4"/>
+                <text><![CDATA[Subtítulo]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="36" splitType="Stretch">
+            <staticText>
+                <reportElement style="Column header" x="0" y="19" width="100" height="15" uuid="8be153a8-e053-42df-bc72-158f73df9cf9"/>
+                <text><![CDATA[Label]]></text>
+            </staticText>
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="9f78217b-4457-49af-9bee-c2339b097bcd"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="16" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="536319ef-c303-4a47-b85d-9afbcc938cc6"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="a1ac19be-ea8c-4ddb-892f-105aaf0377d0"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="9c174eda-a246-437d-9f1a-4b11bd49e65f"/>
+                <textElement textAlignment="Right">
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="7ceca7fa-8cd6-4939-9103-9ee5d2960101"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="dcc405fa-4cf7-4346-bc22-b5fd181e13f0"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
+</jasperReport>
