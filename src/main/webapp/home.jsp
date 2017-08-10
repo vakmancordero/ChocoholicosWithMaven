@@ -30,51 +30,70 @@
                 response.sendRedirect("login.jsp");
         %>
         <div ng-app="chocoApp"  ng-controller="ChocoController">
-            <div class="ui fixed inverted menu">
-                <div class="ui container">
-                    <a href="#" class="header item">
-                        <img class="logo" src="">
-                        Chocoholicos
-                    </a>
-                    <a href="<c:url value = "/home.jsp"/>" class="item">Inicio</a>
-                    <div class="ui dropdown item">
-                        <i class="database icon"></i>Consultas <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a class="item" href="#">Ver consultas</a>
-                            <div class="divider"></div>
-                            <a class="item" href="#">Eliminar consultas</a>
-                        </div>
-                    </div>
-                    <div class="right menu">
-                        <div class="ui dropdown item">
-                            
-                            <% if (user != null) { %>
-                            
-                                <i class="database icon"></i><%= user.toString() %> <i class="dropdown icon"></i>
-                            
-                            <% } %>
-                            
-                            <div class="menu">
+    
+            <!-- Sidebar Menu -->
+            <div class="ui vertical inverted sidebar menu">
+                <a class="active header item">Chocoholicos</a>
+                <a class="item" href="<c:url value = "/home.jsp"/>" class="item">
+                    <i class="home icon"></i>
+                    Inicio
+                </a>
+                <a class="item" ng-click="openListConsultationsMl()">
+                    <i class="list icon"></i>
+                    Ver consultas
+                </a>
+                <a class="item" href="UserController?action=closeSession">
+                    <i class="sign out icon"></i>
+                    Cerrar sesión
+                </a>
+            </div>
+    
+            <div class="pusher" id="myContainer">
+                
+                <div class="ui inverted vertical masthead center aligned segment">
+                    <div class="ui center aligned container">
+                        <div class="ui large secondary inverted pointing menu">
+                            <a class="toc item">
+                                <i class="sidebar icon"></i>
+                            </a>
+                            <a class="active header item">Chocoholicos</a>
+                            <a class="active item" href="<c:url value = "/home.jsp"/>" class="item">Inicio</a>
+                            <div class="ui dropdown item">
+                                <i class="database icon"></i>Consultas <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <a class="item" href="#">Ver consultas</a>
+                                    <div class="divider"></div>
+                                    <a class="item" href="#">Eliminar consultas</a>
+                                </div>
+                            </div>
+                            <div class="right menu">
+                                <div class="ui dropdown inverted item">
+                                    
+                                    <% if (user != null) { %>
                                 
-                                <a class="item" href="UserController?action=closeSession">
-                                    <i class="sign out icon"></i>
-                                    Cerrar sesión
-                                </a>
+                                        <i class="database icon"></i><%= user.toString() %> <i class="dropdown icon"></i>
+                                    
+                                    <% } %>
+                                
+                                    <div class="menu">
+                                        <a class="item" href="UserController?action=closeSession">
+                                            <i class="sign out icon"></i>
+                                            Cerrar sesión
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="pusher" id="myContainer">
 
                 <div class="ui vertical stripe segment">
 
-                    <h1 class="ui header container">Bienvenido a <strong>Chocoholicos</strong>!</h1>
+                    <h1 style="font-size: 3em;" class="ui header container main">Bienvenido a <strong>Chocoholicos</strong>!</h1>
 
                     <div class="ui middle aligned piled segment container">
-                        <div class="ui inverted segment">
-                            <h4>Listado de entidades</h4>
+                        <div class="ui inverted segment" style="overflow-x: scroll;">
+                            <h4>Listado de herramientas</h4>
                             <div class="ui inverted labeled icon menu">
                                 <a class="item" ng-click="openListUsersMl()">
                                     <i class="address book icon"></i>
@@ -92,93 +111,81 @@
                         </div>
                     </div>
 
-                    <div class="ui middle aligned piled segment stackable container">
-                        <div class="ui three column grid ">
-                            <div class="column">
-                                <div class="ui segment special cards">
-                                    <div class="card">
-                                        <div class="blurring dimmable image">
-                                            <div class="ui dimmer">
-                                                <div class="content">
-                                                    <div class="center">
-                                                        <button class="ui inverted button" ng-click="openAddUserMl()">
-                                                            Añadir usuario
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <img src="<c:url value = "/img/matthew.png"/>">
-                                        </div>
+                    <div class="ui middle aligned piled segment container">
+                        <div class="ui three column centered stackable grid segment special cards">
+                            <div class="card">
+                                <div class="blurring dimmable image">
+                                    <div class="ui dimmer">
                                         <div class="content">
-                                            <a class="header">Administrar usuarios</a>
-                                            <div class="meta">
-                                                <span class="date">Agregar nuevos miembros o proveedores</span>
+                                            <div class="center">
+                                                <button class="ui inverted button" ng-click="openAddUserMl()">
+                                                    Añadir usuario
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="extra content">
-                                            <a>
-                                                <i class="user circle icon"></i>
-                                                {{providers.length + members.length}} miembros registrados
-                                            </a>
-                                        </div>
+                                    </div>
+                                    <img src="<c:url value = "/img/matthew.png"/>">
+                                </div>
+                                <div class="content">
+                                    <a class="header">Administrar usuarios</a>
+                                    <div class="meta">
+                                        <span class="date">Agregar nuevos miembros o proveedores</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="column">
-                                <div class="ui segment special cards">
-                                    <div class="card">
-                                        <div class="blurring dimmable image">
-                                            <div class="ui dimmer">
-                                                <div class="content">
-                                                    <div class="center">
-                                                        <button class="ui inverted button" ng-click="openAddConsultationMl()">
-                                                            Nueva consulta
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <img src="<c:url value = "/img/consulta.png"/>">
-                                        </div>
-                                        <div class="content">
-                                            <a class="header">Generar consultas</a>
-                                            <div class="meta">
-                                                <span class="date">Crear nuevas consultas para miembros</span>
-                                            </div>
-                                        </div>
-                                        <div class="extra content">
-                                            <a>
-                                                <i class="doctor icon"></i>
-                                                {{consultations.length}} Consultas registradas
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="extra content">
+                                    <a>
+                                        <i class="user circle icon"></i>
+                                        {{providers.length + members.length}} miembros registrados
+                                    </a>
                                 </div>
                             </div>
-                            <div class="column">
-                                <div class="ui segment special cards">
-                                    <div class="card">
-                                        <div class="blurring dimmable image">
-                                            <div class="ui dimmer">
-                                                <div class="content">
-                                                    <div class="center">
-                                                        <button class="ui inverted button" ng-click="openListUserMlReport()">
-                                                            Nuevo reporte
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <img src="<c:url value = "/img/report.png"/>">
-                                        </div>
+                            <div class="card">
+                                <div class="blurring dimmable image">
+                                    <div class="ui dimmer">
                                         <div class="content">
-                                            <a class="header">Generar reportes</a>
-                                            <div class="meta">
-                                                <span class="date">Exportar información de registros</span>
+                                            <div class="center">
+                                                <button class="ui inverted button" ng-click="openAddConsultationMl()">
+                                                    Nueva consulta
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="extra content">
-                                            <a><i class="print icon"></i></a>
                                         </div>
                                     </div>
+                                    <img src="<c:url value = "/img/consulta.png"/>">
+                                </div>
+                                <div class="content">
+                                    <a class="header">Generar consultas</a>
+                                    <div class="meta">
+                                        <span class="date">Crear nuevas consultas para miembros</span>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <a>
+                                        <i class="doctor icon"></i>
+                                        {{consultations.length}} Consultas registradas
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="blurring dimmable image">
+                                    <div class="ui dimmer">
+                                        <div class="content">
+                                            <div class="center">
+                                                <button class="ui inverted button" ng-click="openListUserMlReport()">
+                                                    Nuevo reporte
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img src="<c:url value = "/img/report.png"/>">
+                                </div>
+                                <div class="content">
+                                    <a class="header">Generar reportes</a>
+                                    <div class="meta">
+                                        <span class="date">Exportar información de registros</span>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <a><i class="print icon"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -639,7 +646,7 @@
                 </div>
                 <div class="image content">
                     <div class="description">
-                        <table class="ui inverted grey selectable celled right aligned tablet stackable table">
+                        <table class="ui teal table selectable celled right aligned tablet stackable table">
                             <thead>
                                 <tr>
                                     <th>Proveedor</th>

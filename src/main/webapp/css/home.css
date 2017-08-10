@@ -17,7 +17,6 @@ and open the template in the editor.
 }
 
 .masthead.segment {
-    min-height: 700px;
     padding: 1em 0em;
 }
 .masthead .logo.item img {
@@ -38,7 +37,7 @@ and open the template in the editor.
 }
 
 .ui.vertical.stripe {
-    padding: 8em 0em;
+    padding: 3em 0em;
 }
 .ui.vertical.stripe h3 {
     font-size: 2em;
@@ -73,6 +72,10 @@ and open the template in the editor.
     display: none;
 }
 
+.secondary.pointing.menu .header.item {
+    display: none;
+}
+
 @media only screen and (max-width: 700px) {
     .ui.fixed.menu {
         display: none !important;
@@ -84,9 +87,15 @@ and open the template in the editor.
     .secondary.pointing.menu .toc.item {
         display: block;
     }
-    .masthead.segment {
-        min-height: 350px;
+    
+    .secondary.pointing.menu .header.item {
+        display: block;
     }
+    
+    .header.main {
+        text-align: center;
+    }
+    
     .masthead h1.ui.header {
         font-size: 2em;
         margin-top: 1.5em;

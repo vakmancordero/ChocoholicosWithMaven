@@ -34,6 +34,8 @@ app.controller('ChocoController', function ($scope, $http) {
         fillMembers();
         fillProviders();
         
+        $('.ui.sidebar').sidebar('attach events', '.toc.item');
+        
     });
     
     $scope.initCity = function () {
