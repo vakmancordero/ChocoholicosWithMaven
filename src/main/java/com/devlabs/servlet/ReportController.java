@@ -43,16 +43,17 @@ public class ReportController extends HttpServlet {
         Provider provider = this.consultationService.getProvider(providerId);
         
         if (provider == null) {
+            
             PrintWriter writer = response.getWriter();
             
-            writer.print("<h1>No hay datos del usuario al que se intenta acceder</h1>");
+            response.sendRedirect("404.html");
             
             return;
         }
         
         List<Record> records = this.consultationService.getConsultationsById(providerId);
         
-        URL url = getClass().getClassLoader().getResource("com/devlabs/util/resources/chocoReport.jasper");
+        URL url = getClass().getClassLoader().getResource("ChocoReport.jasper");
         
         String fileName = new File(url.getFile()).getAbsolutePath();
         
