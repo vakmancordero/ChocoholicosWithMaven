@@ -53,7 +53,7 @@ public class ReportController extends HttpServlet {
         
         List<Record> records = this.consultationService.getConsultationsById(providerId);
         
-        URL url = getClass().getClassLoader().getResource("chocoReport.jasper");
+        URL url = getClass().getClassLoader().getResource("Choco.jasper");
         
         String fileName = new File(url.getFile()).getAbsolutePath();
         
