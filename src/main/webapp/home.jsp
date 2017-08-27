@@ -481,11 +481,11 @@
                             </div>
                             <div class="field">
                                 <label>Descripción del servicio:</label>
-                                <textarea rows="3" ng-model="consultation.description"></textarea>
+                                <textarea rows="3" ng-model="consultation.description" required></textarea>
                             </div>
                             <div class="field">
                                 <label>Comentarios:</label>
-                                <textarea rows="3" ng-model="consultation.comment"></textarea>
+                                <textarea rows="3" ng-model="consultation.comment" required></textarea>
                             </div>
                             <button class="ui button" type="submit">Finalizar</button>
                         </form>

@@ -4,10 +4,10 @@
 	<property name="ireport.zoom" value="1.331000000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Arial"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Title" fontName="Courier" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Courier" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Courier" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Courier" fontSize="12"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#999999"/>
@@ -55,15 +55,13 @@
 			</image>
 			<staticText>
 				<reportElement style="Title" x="10" y="-8" width="263" height="56" uuid="4f31ec36-8ae1-46d8-ba77-dd8646ceb7ec"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="36"/>
-				</textElement>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Chocóholicos]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="69" y="47" width="203" height="23" uuid="eb45a435-2a53-4d4b-b0fa-32dd9d98d811"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{provider}]]></textFieldExpression>
 			</textField>
@@ -83,7 +81,7 @@
 			<textField>
 				<reportElement x="128" y="0" width="425" height="35" uuid="46ebec4b-9411-43f6-8534-0a52ad1dc51d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{details}]]></textFieldExpression>
 			</textField>
@@ -108,7 +106,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="150" height="30" uuid="92344f47-6c06-4fc6-b72d-6356fcd07ab6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+									<font size="12" isBold="true" isUnderline="false"/>
 								</textElement>
 								<text><![CDATA[Miembro]]></text>
 							</staticText>
@@ -118,7 +116,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="150" height="20" uuid="b16d5db0-5592-4593-95be-6c208626f12b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="11"/>
+									<font size="11"/>
 									<paragraph leftIndent="10"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{member}]]></textFieldExpression>
@@ -130,7 +128,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="150" height="30" uuid="ff8a3691-653f-4e8c-9f32-fa02619dc4db"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+									<font size="12" isBold="true" isUnderline="false"/>
 								</textElement>
 								<text><![CDATA[Servicio]]></text>
 							</staticText>
@@ -140,7 +138,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="150" height="20" uuid="4e45326e-74d2-4561-873e-f60abe7ecf12"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="11"/>
+									<font size="11"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{service}]]></textFieldExpression>
 							</textField>
@@ -151,7 +149,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="30" uuid="7ea72573-0938-46fb-af45-122215b6f86d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+									<font size="12" isBold="true" isUnderline="false"/>
 								</textElement>
 								<text><![CDATA[F. Creación]]></text>
 							</staticText>
@@ -161,7 +159,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="80" height="20" uuid="efa0ab5f-d832-47e7-8c9f-fd6aa98f860b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="11"/>
+									<font size="11"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{currentDate}]]></textFieldExpression>
 							</textField>
@@ -172,7 +170,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="30" uuid="047c564c-0a4f-4f63-a707-535913c2d9ff"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+									<font size="12" isBold="true" isUnderline="false"/>
 								</textElement>
 								<text><![CDATA[F. Consulta]]></text>
 							</staticText>
@@ -182,7 +180,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="80" height="20" uuid="cb5957ff-0f05-4636-9ea2-7fd517fcad1d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="11"/>
+									<font size="11"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 							</textField>
@@ -193,7 +191,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="120" height="30" uuid="408ade0e-21e2-4ee1-bb51-931df0dec70a"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+									<font size="12" isBold="true" isUnderline="false"/>
 								</textElement>
 								<text><![CDATA[Descripción]]></text>
 							</staticText>
@@ -203,7 +201,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="120" height="20" uuid="6a8594a9-62a5-49f2-a584-b354140073fa"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial" size="11"/>
+									<font size="11"/>
 									<paragraph rightIndent="10"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>

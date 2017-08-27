@@ -77,8 +77,8 @@ public class ConsultationController extends HttpServlet {
                         writer.print(false);
                     }
                     
-                } catch (ParseException ex) {
-                    
+                } catch (NullPointerException | ParseException ex) {
+                    writer.print(false);
                 }
                 
             }
